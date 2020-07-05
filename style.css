@@ -457,7 +457,6 @@ template {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100vh;
   width: 75vw;
   margin: 0 auto;
 }
@@ -465,6 +464,8 @@ template {
 .mac {
   display: flex;
   justify-content: space-around;
+  height: 60vh;
+  transition: 500ms;
 }
 
 .mactext {
@@ -520,7 +521,6 @@ template {
 
 .iCatalog {
   border-top: solid 1px black;
-  height: 150vh;
 }
 
 .iphone {
@@ -623,4 +623,33 @@ template {
 
 a {
   text-decoration: none;
+}
+
+
+/* Rendered products and rendered forms style*/
+
+.buyForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 500ms;
+  width: 75vw;
+  align-items: flex-start;
+}
+
+.formInputs{
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.buyFormInput{
+  width: 20vw;
+  height: 10vh;
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  margin: 5px;
+  padding: 10px;
 }

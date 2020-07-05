@@ -22,10 +22,28 @@ function buttonGetStart() {
   );
   HelloField[0].innerHTML = `Hello ${name}. Ready for more?`;
 }
+document
+  .querySelector(".header-button")
+  .addEventListener("click", buttonGetStart);
 
 function productRender() {
-  let field = document.getElementsByClassName('mac');
-  field.target.setAttribute("style", "background-color: rgb(0,0,0);");
+  this.innerHTML = `
+    <div class='buyForm'>
+<div class='formInputs'>
+<input type='text' placeholder='First name'  class='buyFormInput'/>
+<input type='text' placeholder='Last name'  class='buyFormInput'/>
+<input type='email' placeholder='email'  class='buyFormInput'/>
+<select class='buyFormSelector'>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+</select>
+</div>
+<input type='submit'  class='buyFormInput'/>
+    </div>`;
 }
-
-
+let arr = document.querySelectorAll(".mac");
+console.log(arr);
+arr.forEach((element) => {
+  element.addEventListener("click", productRender);
+});
