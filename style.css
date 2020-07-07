@@ -389,7 +389,6 @@ template {
 .header-content-title {
   font-weight: bolder;
   font-size: 62px;
-  color: black;
   font-family: "Notable", sans-serif;
   padding: 10px;
 }
@@ -625,25 +624,24 @@ a {
   text-decoration: none;
 }
 
-
 /* Rendered products and rendered forms style*/
 
-.buyForm{
+.buyForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   transition: 500ms;
   width: 75vw;
   align-items: flex-start;
+  z-index: 15;
 }
 
-.formInputs{
+.formInputs {
   display: flex;
   flex-direction: column;
- 
 }
 
-.buyFormInput{
+.buyFormInput {
   width: 20vw;
   height: 10vh;
   border: none;

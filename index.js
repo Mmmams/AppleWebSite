@@ -27,6 +27,7 @@ document
   .addEventListener("click", buttonGetStart);
 
 function productRender() {
+  let a = document.querySelector(".mac");
   this.innerHTML = `
     <div class='buyForm'>
 <div class='formInputs'>
@@ -42,7 +43,7 @@ function productRender() {
 <input type='submit'  class='buyFormInput'/>
     </div>`;
 }
-let arr = document.querySelectorAll(".mac");
+let arr = document.querySelectorAll(".macbtn");
 console.log(arr);
 arr.forEach((element) => {
   element.addEventListener("click", productRender);
