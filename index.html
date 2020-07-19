@@ -44,66 +44,71 @@
         </div>
       </div>
     </div>
-
+<!-- разбинение по дивам в блоке с товаром каталог(все товары данного типа)->поле одной единицы товара(с картинкой и текстом)->разделение на две части в одной тест и кнопка в другой изображение -->
     <div class="macCatalog">
-      <div class="mac">
+      <div class="mac commonMac">
         <div class="mactext">
           <div class="macnew">New</div>
           <div class="mactitle">MacBook Pro</div>
           <div class="macsubtitle">Power. Moves.</div>
-          <button class="macbtn">Buy</button>
+          <button class="macbtn commonMacbtn">Buy</button>
         </div>
         <div class="macimg">
           <img src="./img/mac.jpg" class="macimg" />
         </div>
       </div>
-
-      <div class="mac">
+        <!-- пустой див с дисплеем нан в который при нажатии кнопки будет подгружаться инерхтмл -->
+<div class="macBuyForm"></div>
+  <!-- пустой див с дисплеем нан в который при нажатии кнопки будет подгружаться инерхтмл -->
+      <div class="mac airMac">
         <img class="macimg" src="./img/macAir.jpg" />
         <div class="mactext macProText">
           <div class="macnew">New</div>
           <div class="mactitle">MacBook Air</div>
           <div class="macsubtitle">Light. Speed.</div>
-          <button class="macbtn">Buy</button>
+          <button class="macbtn airMacbtn">Buy</button>
         </div>
       </div>
+      <!-- пустой див с дисплеем нан в который при нажатии кнопки будет подгружаться инерхтмл -->
+      <div class="airMacBuyForm"></div> 
+        <!-- пустой див с дисплеем нан в который при нажатии кнопки будет подгружаться инерхтмл -->   
     </div>
     <!-- Стили для блока iphone и iwatch такие же как для mac поэтому классы остаются с старыми названиями. -->
     <div class="macCatalog iCatalog">
-      <div class="mac iphone">
-        <div class="mactext">
+      <div class="mac iphone ise">
+        <div class="mactext iseText">
           <div class="macnew">New</div>
           <div class="mactitle">iPhone se</div>
           <div class="macsubtitle">Lots to love. Less to spend.</div>
           <div class="price">Starting at $399.</div>
           <div class="subprice">From $9.54/mo. or $229 with trade-in.</div>
-          <button class="macbtn">Buy</button>
+          <button class="macbtn iseBtn">Buy</button>
         </div>
-        <div class="macimg">
+        <div class="macimg iseImg">
           <img src="./img/ise.jpg" class="macimg" />
         </div>
       </div>
 
       <div class="mac iphone">
-        <img class="macimg" src="./img/i11.png" />
-        <div class="mactext macProText">
+        <img class="macimg i11Img" src="./img/i11.png" />
+        <div class="mactext macProText i11Text">
           <div class="mactitle">iPhone 11</div>
           <div class="macsubtitle">Just the right amount of everything.</div>
           <div class="subprice">From $18.70/mo. or $449 with trade-in.</div>
-          <button class="macbtn">Buy</button>
+          <button class="macbtn i11Btn">Buy</button>
         </div>
       </div>
 
       <div class="mac iphone">
-        <div class="mactext">
+        <div class="mactext iProText">
           <div class="mactitle">iPhone 11 Pro</div>
           <div class="macsubtitle">
             Pro cameras. Pro display. Pro performance.
           </div>
           <div class="subprice">From $28.29/mo. or $679 with trade-in.</div>
-          <button class="macbtn">Buy</button>
+          <button class="macbtn iProBtn">Buy</button>
         </div>
-        <img class="macimg" src="./img/i11pro.jpg" />
+        <img class="macimg iProImg" src="./img/i11pro.jpg" />
       </div>
     </div>
 
