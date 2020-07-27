@@ -100,20 +100,22 @@ async function clickFun() {
       .querySelector(".macBuyForm")
       .setAttribute("style", "display:none;");
     document.querySelector(".airMacBuyForm").innerHTML = `
-  <div class='buyForm'>
-<div class='formInputs'>
-<input type='text' placeholder='First name'  class='buyFormInput'/>
-<input type='text' placeholder='Last name'  class='buyFormInput'/>
-<input type='email' placeholder='email'  class='buyFormInput'/>
-<select class='buyFormInput'>
-<option>1</option>
-<option>2</option>
-<option>3</option>
-</select>
-<input type='submit'  class='buyFormInput'/>
-</div>
-<div class='MacBuyImg'></div>
-  </div>`;
+    <div class='buyForm'>
+    <div class='airMacBuyImg'></div>
+    <div class='formInputs'>
+    <input type='text' placeholder='First name' class='buyFormInput'/>
+    <input type='text' placeholder='Last name' class='buyFormInput'/>
+    <input type='email' placeholder='email' class='buyFormInput'/>
+    <select class='buyFormInput airMacSelect'>
+    <option>BLACK</option>
+    <option>RED</option>
+    <option>WHITE</option>
+    </select>
+    <input type='submit' class='buyFormInput'/>
+    </div>
+    </div>`;
+
+    // обработчик кнопок айфона
   } else if (event.target.classList.contains("iseBtn")) {
     document
       .querySelector(".iseImg")
@@ -126,11 +128,6 @@ async function clickFun() {
       <input type='text' placeholder='First name'  class='buyFormInput'/>
       <input type='text' placeholder='Last name'  class='buyFormInput'/>
       <input type='email' placeholder='email'  class='buyFormInput'/>
-      <select class='buyFormInput commonMacSelect'>
-      <option>BLACK</option>
-      <option>WHITE</option>
-      <option>RED</option>
-      </select>
       <input type='submit'  class='buyFormInput'/>`;
   } else if (event.target.classList.contains("i11Btn")) {
     document
@@ -144,11 +141,6 @@ async function clickFun() {
       <input type='text' placeholder='First name'  class='buyFormInput'/>
       <input type='text' placeholder='Last name'  class='buyFormInput'/>
       <input type='email' placeholder='email'  class='buyFormInput'/>
-      <select class='buyFormInput commonMacSelect'>
-      <option>BLACK</option>
-      <option>WHITE</option>
-      <option>RED</option>
-      </select>
       <input type='submit'  class='buyFormInput'/>`;
   } else if (event.target.classList.contains("iProBtn")) {
     document
@@ -162,15 +154,10 @@ async function clickFun() {
       <input type='text' placeholder='First name'  class='buyFormInput'/>
       <input type='text' placeholder='Last name'  class='buyFormInput'/>
       <input type='email' placeholder='email'  class='buyFormInput'/>
-      <select class='buyFormInput commonMacSelect'>
-      <option>BLACK</option>
-      <option>WHITE</option>
-      <option>RED</option>
-      </select>
       <input type='submit'  class='buyFormInput'/>`;
   }
 
-  // обработчик селектора цвета товара
+  // обработчик селектора цвета товара мак
   else if (event.target.classList.contains("commonMacSelect")) {
     if (document.querySelector(".commonMacSelect").value == "BLACK") {
       document
@@ -194,6 +181,31 @@ async function clickFun() {
         .setAttribute(
           "style",
           'background: url("./colorImg/redCommonMac.jpg") 50% 50%; background-size: cover; background-repeat: no-repeat;'
+        );
+    }
+  } else if (event.target.classList.contains("airMacSelect")) {
+    if (document.querySelector(".airMacSelect").value == "BLACK") {
+      document
+        .querySelector(".airMacBuyImg")
+        .setAttribute(
+          "style",
+          'background: url("./colorImg/blackAirMac.jpg") 50% 50%; background-size: cover; background-repeat: no-repeat;'
+        );
+    }
+    if (document.querySelector(".airMacSelect").value == "WHITE") {
+      document
+        .querySelector(".airMacBuyImg")
+        .setAttribute(
+          "style",
+          'background: url("./colorImg/whiteAirMac.jpg") 50% 50%; background-size: cover; background-repeat: no-repeat;'
+        );
+    }
+    if (document.querySelector(".airMacSelect").value == "RED") {
+      document
+        .querySelector(".airMacBuyImg")
+        .setAttribute(
+          "style",
+          'background: url("./colorImg/redAirMac.jpg") 50% 50%; background-size: cover; background-repeat: no-repeat;'
         );
     }
   }

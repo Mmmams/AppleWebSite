@@ -684,3 +684,11 @@ a {
 .iProImg {
   transition: 300ms;
 }
+.airMacBuyImg {
+  height: 50vh;
+  width: 50vh;
+  background: url("./colorImg/blackAirMac.jpg") 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: 300ms;
+}
