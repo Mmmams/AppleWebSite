@@ -68,13 +68,28 @@ async function clickFun() {
   // обработчики кнопок товаров
   else if (event.target.classList.contains("commonMacbtn")) {
     document.querySelector(".commonMac").setAttribute("style", "display:none;");
-    document.querySelector(".airMac").setAttribute("style", "display:flex;");
+    document.querySelector(".commonMac").classList.add("toOpacity");
     document
       .querySelector(".airMacBuyForm")
       .setAttribute("style", "display:none;");
+    if (document.querySelector(".airMac").classList.contains("toOpacity")) {
+      document
+        .querySelector(".airMac")
+        .setAttribute("style", "display:flex; opacity: 30%;");
+      setTimeout(() => {
+        document
+          .querySelector(".airMac")
+          .setAttribute("style", "display:flex; opacity: 100%;");
+      }, 70);
+    }
     document
       .querySelector(".macBuyForm")
-      .setAttribute("style", "display:flex;");
+      .setAttribute("style", "display:flex; opacity: 30%;");
+    setTimeout(() => {
+      document
+        .querySelector(".macBuyForm")
+        .setAttribute("style", "display:flex; opacity: 100%;");
+    }, 70);
     document.querySelector(".macBuyForm").innerHTML = `
   <div class='buyForm'>
 <div class='formInputs'>
@@ -91,11 +106,11 @@ async function clickFun() {
 <div class='commonMacBuyImg'></div>
   </div>`;
   } else if (event.target.classList.contains("airMacbtn")) {
-    document.querySelector(".commonMac").setAttribute("style", "display:flex;");
     document.querySelector(".airMac").setAttribute("style", "display:none;");
+    document.querySelector(".airMac").classList.add("toOpacity");
     document
       .querySelector(".airMacBuyForm")
-      .setAttribute("style", "display:flex;");
+      .setAttribute("style", "display:flex; opacity: 30%;");
     document
       .querySelector(".macBuyForm")
       .setAttribute("style", "display:none;");
@@ -114,21 +129,37 @@ async function clickFun() {
     <input type='submit' class='buyFormInput'/>
     </div>
     </div>`;
-
+    setTimeout(() => {
+      document
+        .querySelector(".airMacBuyForm")
+        .setAttribute("style", "display:flex; opacity: 100%;");
+    }, 70);
+    if (document.querySelector(".commonMac").classList.contains("toOpacity")) {
+      document
+        .querySelector(".commonMac")
+        .setAttribute("style", "display:flex; opacity: 30%;");
+      setTimeout(() => {
+        document
+          .querySelector(".commonMac")
+          .setAttribute("style", "display:flex; opacity: 100%;");
+      }, 70);
+    }
     // обработчик кнопок айфона
   } else if (event.target.classList.contains("iseBtn")) {
-    document
-      .querySelector(".iseImg")
-      .setAttribute("style", "transform: translate(-37vw,0);");
-    document
-      .querySelector(".iseText")
-      .setAttribute("style", "transform: translate(37vw,0);");
-    document.querySelector(".iseText").innerHTML = `
+    let prom = new Promise((resolve, reject) => {
+      let selector = document.querySelector(".iseImg");
+      resolve(selector.setAttribute("style", "transform: translate(-37vw,0);"));
+      let atherSlector = document.querySelector(".iseText");
+      atherSlector.setAttribute("style", "transform: translate(37vw,0);");
+    });
+    prom.then(() => {
+      document.querySelector(".iseText").innerHTML = `
       <div class='formInputs'>
       <input type='text' placeholder='First name'  class='buyFormInput'/>
       <input type='text' placeholder='Last name'  class='buyFormInput'/>
       <input type='email' placeholder='email'  class='buyFormInput'/>
       <input type='submit'  class='buyFormInput'/>`;
+    });
   } else if (event.target.classList.contains("i11Btn")) {
     document
       .querySelector(".i11Img")
@@ -183,6 +214,7 @@ async function clickFun() {
           'background: url("./colorImg/redCommonMac.jpg") 50% 50%; background-size: cover; background-repeat: no-repeat;'
         );
     }
+    // обработчик цвета аирмак
   } else if (event.target.classList.contains("airMacSelect")) {
     if (document.querySelector(".airMacSelect").value == "BLACK") {
       document
