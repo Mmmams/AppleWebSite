@@ -391,6 +391,7 @@ template {
   font-size: 62px;
   font-family: "Notable", sans-serif;
   padding: 10px;
+  cursor: default;
 }
 
 .header-content-subtitle {
@@ -398,6 +399,7 @@ template {
   font-size: 32px;
   color: rgba(255, 255, 255, 0.589);
   padding: 0px 5px 20px 5px;
+  cursor: default;
 }
 
 .form {
@@ -443,10 +445,15 @@ template {
   width: 18vh;
   cursor: pointer;
   transition: 750ms;
+  margin: 5px;
+  height: 6vh;
 }
 .header-button:hover {
-  font-size: 22px;
-  padding: 14px 20px;
+  height: 6vh;
+  width: 18vh;
+  font-size: 20px;
+  padding: 16px 20px;
+  margin: 5px;
 }
 
 /*MAC*/
@@ -465,6 +472,7 @@ template {
   justify-content: space-around;
   height: 60vh;
   transition: 500ms;
+  cursor: default;
 }
 
 .mactext {
@@ -651,8 +659,12 @@ a {
   padding: 10px;
   width: 15vw;
   height: 5vh;
-  transition: 5000ms;
+  transition: 100ms;
   outline: none;
+}
+
+.buyFormInput:hover {
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
 .macBuyForm {
@@ -691,5 +703,25 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   transition: 300ms;
-  
+}
+
+.iphoneContainer {
+  display: flex;
+}
+
+.backimg {
+  width: 1vw;
+  height: 1vw;
+  opacity: 70%;
+  transition: 250ms;
+  padding: 3px;
+  margin: 12px;
+}
+
+.backimg:hover {
+  width: 1.2vw;
+  height: 1.2vw;
+  opacity: 100%;
+  padding: 3px;
+  margin: 10px;
 }
