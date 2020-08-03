@@ -30,23 +30,24 @@ class Order {
 }
 
 async function clickFun() {
-  //  обработчик кнопки гетстарт
+  //  обработчик кнопки sing in
   if (event.target.classList.contains("header-button")) {
     if (
       document.getElementById("NamePlaceholder").value != "" &&
-      document.getElementById("emailPlaceholder").value != ""
+      document.getElementById("passPlaceholder").value != ""
     ) {
       let name = document.getElementById("NamePlaceholder").value;
-      let email = document.getElementById("emailPlaceholder").value;
-      let HelloField = document.getElementsByClassName("formWrapper");
-      HelloField[0].setAttribute(
-        "style",
-        "font-size: 26px; outline: none; margin: 5px;font-family: 'Notable', sans-serif; color: rgb(255, 255, 255); height: 7vh;"
-      );
-      HelloField[0].innerHTML = `Hello ${name}. Ready for more?`;
+      let password = document.getElementById("passPlaceholder").value;
+      let HelloField = document.querySelector(".formWrapper");
+      HelloField.innerHTML = ``;
+      HelloField.setAttribute("style", "height: 7vh;");
       document
         .querySelector(".header-button")
-        .setAttribute("style", "display:none");
+        .setAttribute("style", "visibility:hidden");
+      document.querySelector(".accName").innerHTML = `acc: ${name}`;
+      document.querySelector(
+        ".exit"
+      ).innerHTML = `<button class='exitBtn'>Exit</button>`;
     } else {
       alert("The name field or the email field are empty.");
     }
