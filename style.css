@@ -725,3 +725,25 @@ a {
   padding: 3px;
   margin: 10px;
 }
+.submit {
+  transition: 550ms;
+  font-size: 24px;
+}
+.submit:hover {
+  border-radius: 15px;
+  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.7);
+  color: white;
+}
+
+.commonMacTitle,
+.airMacTitle,
+.iseTitle,
+.i11Title,
+.iProTitle {
+  margin-left: 20px;
+}
+
+.pro {
+  color: red;
+}

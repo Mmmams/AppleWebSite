@@ -13,6 +13,22 @@ setInterval(() => {
 
 document.getElementsByTagName("body")[0].addEventListener("click", clickFun);
 
+class Order {
+  static toOrder(value) {
+    return fetch("https://applewebsite-b8de1.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify(value),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+      });
+  }
+}
+
 async function clickFun() {
   //  обработчик кнопки гетстарт
   if (event.target.classList.contains("header-button")) {
@@ -73,15 +89,16 @@ async function clickFun() {
     document.querySelector(".macBuyForm").innerHTML = `
   <div class='buyForm'>
 <div class='formInputs'>
-<input type='text' placeholder='First name'  class='buyFormInput'/>
-<input type='text' placeholder='Last name'  class='buyFormInput'/>
-<input type='email' placeholder='email'  class='buyFormInput'/>
+<div class="mactitle commonMacTitle">MacBook <span class='pro'>Pro</span></div>
+<input type='text' placeholder='First name'  class='buyFormInput' id='commonMacFname'/>
+<input type='text' placeholder='Last name'  class='buyFormInput' id='commonMacLname'/>
+<input type='email' placeholder='email'  class='buyFormInput' id='commonMacEmail'/>
 <select class='buyFormInput commonMacSelect'>
 <option>BLACK</option>
 <option>WHITE</option>
 <option>RED</option>
 </select>
-<input type='submit'  class='buyFormInput'/>
+<input type='submit'  class='buyFormInput commonMacSubmit submit' value='To order'/>
 </div>
 <div class='commonMacBuyImg'></div>
   </div>`;
@@ -98,15 +115,16 @@ async function clickFun() {
     <div class='buyForm'>
     <div class='airMacBuyImg'></div>
     <div class='formInputs'>
-    <input type='text' placeholder='First name' class='buyFormInput'/>
-    <input type='text' placeholder='Last name' class='buyFormInput'/>
-    <input type='email' placeholder='email' class='buyFormInput'/>
+    <div class="mactitle airMacTitle">MacBook Air</div>
+    <input type='text' placeholder='First name' class='buyFormInput' id='airMacFname'/>
+    <input type='text' placeholder='Last name' class='buyFormInput' id='airMacLname'/>
+    <input type='email' placeholder='email' class='buyFormInput' id='airMacEmail'/>
     <select class='buyFormInput airMacSelect'>
     <option>BLACK</option>
     <option>RED</option>
     <option>WHITE</option>
     </select>
-    <input type='submit' class='buyFormInput'/>
+    <input type='submit' class='buyFormInput airMacSubmit submit' value='To order'/>
     </div>
     </div>`;
     setTimeout(() => {
@@ -146,10 +164,11 @@ async function clickFun() {
       document.querySelector(".iseText").innerHTML = `
       <div class='iphoneContainer'>
       <div class='formInputs'>
-      <input type='text' placeholder='First name'  class='buyFormInput'/>
-      <input type='text' placeholder='Last name'  class='buyFormInput'/>
-      <input type='email' placeholder='email'  class='buyFormInput'/>
-      <input type='submit'  class='buyFormInput'/>
+      <div class="mactitle iseTitle">iPhone se</div>
+      <input type='text' placeholder='First name'  class='buyFormInput' id='iseFname'/>
+      <input type='text' placeholder='Last name'  class='buyFormInput'  id='iseLname'/>
+      <input type='email' placeholder='email'  class='buyFormInput' id='iseEmail'/>
+      <input type='submit'  class='buyFormInput iseSubmit submit' value='To order'/>
       </div>
       <img class='backimg iseBackBtn' src="./img/backimg.png"/>
       </div>`;
@@ -165,10 +184,11 @@ async function clickFun() {
     <div class='iphoneContainer'>
     <img class='backimg i11BackBtn' src="./img/backimRev.png"/>
       <div class='formInputs'>
-      <input type='text' placeholder='First name'  class='buyFormInput'/>
-      <input type='text' placeholder='Last name'  class='buyFormInput'/>
-      <input type='email' placeholder='email'  class='buyFormInput'/>
-      <input type='submit'  class='buyFormInput'/>
+      <div class="mactitle i11Title">iPhone 11</div>
+      <input type='text' placeholder='First name'  class='buyFormInput' id='i11Fname'/>
+      <input type='text' placeholder='Last name'  class='buyFormInput' id='i11Lname'/>
+      <input type='email' placeholder='email'  class='buyFormInput' id='i11Email'/>
+      <input type='submit'  class='buyFormInput i11Submit submit' value='To order'/>
       </div>
       </div>`;
   } else if (event.target.classList.contains("iProBtn")) {
@@ -181,10 +201,11 @@ async function clickFun() {
     document.querySelector(".iProText").innerHTML = `
     <div class='iphoneContainer'>
       <div class='formInputs'>
-      <input type='text' placeholder='First name'  class='buyFormInput'/>
-      <input type='text' placeholder='Last name'  class='buyFormInput'/>
-      <input type='email' placeholder='email'  class='buyFormInput'/>
-      <input type='submit'  class='buyFormInput'/>
+      <div class="mactitle iProTitle">iPhone 11 <span class='pro'>Pro</span></div>
+      <input type='text' placeholder='First name'  class='buyFormInput' id='iProFname'/>
+      <input type='text' placeholder='Last name'  class='buyFormInput' id='iProLname'/>
+      <input type='email' placeholder='email'  class='buyFormInput' id='iProEmail'/>
+      <input type='submit'  class='buyFormInput iProSubmit submit' value='To order'/>
       </div>
       <img class='backimg iProBackBtn' src="./img/backimg.png"/>
       </div>`;
@@ -284,6 +305,131 @@ async function clickFun() {
           "style",
           'background: url("./colorImg/redAirMac.jpg") 50% 50%; background-size: cover; background-repeat: no-repeat;'
         );
+    }
+  }
+
+  //асинхронные запросы на покупку товаров
+  else if (event.target.classList.contains("commonMacSubmit")) {
+    document.querySelector(".commonMacSubmit").disabled = true;
+    fname = document.querySelector("#commonMacFname");
+    lname = document.querySelector("#commonMacLname");
+    email = document.querySelector("#commonMacEmail");
+    color = document.querySelector(".commonMacSelect");
+    product = document.querySelector(".mactitle");
+    document.querySelector(".commonMacSubmit").disabled = false;
+    if (fname.value == "" || lname.value == "" || email.value == "") {
+      alert("Fill in all the fields.");
+      console.log(fname.value, lname.value, email.value);
+    } else {
+      const value = {
+        product: product.value,
+        first_name: fname.value,
+        last_name: lname.value,
+        product_color: color.value,
+        email: email.value,
+        date: new Date().toJSON(),
+      };
+      Order.toOrder(value)
+        .then(
+          () => (document.querySelector(".commonMacSubmit").disabled = false)
+        )
+        .then(() => console.log(value));
+    }
+  } else if (event.target.classList.contains("airMacSubmit")) {
+    document.querySelector(".airMacSubmit").disabled = true;
+    fname = document.querySelector("#airMacFname");
+    lname = document.querySelector("#airMacLname");
+    email = document.querySelector("#airMacEmail");
+    color = document.querySelector(".airMacSelect");
+    product = document.querySelector(".airMacTitle");
+    document.querySelector(".airMacSubmit").disabled = false;
+    if (fname.value == "" || lname.value == "" || email.value == "") {
+      alert("Fill in all the fields.");
+      console.log(fname.value, lname.value, email.value);
+    } else {
+      const value = {
+        product: product.value,
+        first_name: fname.value,
+        last_name: lname.value,
+        email: email.value,
+        product_color: color.value,
+        date: new Date().toJSON(),
+      };
+      Order.toOrder(value)
+        .then(() => (document.querySelector(".airMacSubmit").disabled = false))
+        .then(() => console.log(value));
+    }
+  } else if (event.target.classList.contains("iseSubmit")) {
+    document.querySelector(".iseSubmit").disabled = true;
+    fname = document.querySelector("#iseFname");
+    lname = document.querySelector("#iseLname");
+    email = document.querySelector("#iseEmail");
+    // color = document.querySelector(".iseSelect");
+    product = document.querySelector(".iseTitle");
+    document.querySelector(".iseSubmit").disabled = false;
+    if (fname.value == "" || lname.value == "" || email.value == "") {
+      alert("Fill in all the fields.");
+      console.log(fname.value, lname.value, email.value);
+    } else {
+      const value = {
+        product: product.value,
+        first_name: fname.value,
+        last_name: lname.value,
+        email: email.value,
+        // color: color.value,
+        date: new Date().toJSON(),
+      };
+      Order.toOrder(value)
+        .then(() => (document.querySelector(".iseSubmit").disabled = false))
+        .then(() => console.log(value));
+    }
+  } else if (event.target.classList.contains("i11Submit")) {
+    document.querySelector(".i11Submit").disabled = true;
+    fname = document.querySelector("#i11Fname");
+    lname = document.querySelector("#i11Lname");
+    email = document.querySelector("#i11Email");
+    // color = document.querySelector(".i11Select");
+    product = document.querySelector(".i11Title");
+    document.querySelector(".i11Submit").disabled = false;
+    if (fname.value == "" || lname.value == "" || email.value == "") {
+      alert("Fill in all the fields.");
+      console.log(fname.value, lname.value, email.value);
+    } else {
+      const value = {
+        product: product.value,
+        first_name: fname.value,
+        last_name: lname.value,
+        email: email.value,
+        // color: color.value,
+        date: new Date().toJSON(),
+      };
+      Order.toOrder(value)
+        .then(() => (document.querySelector(".i11Submit").disabled = false))
+        .then(() => console.log(value));
+    }
+  } else if (event.target.classList.contains("iProSubmit")) {
+    document.querySelector(".iProSubmit").disabled = true;
+    fname = document.querySelector("#iProFname");
+    lname = document.querySelector("#iProLname");
+    email = document.querySelector("#iProEmail");
+    // color = document.querySelector(".iProSelect");
+    product = document.querySelector(".iProTitle");
+    document.querySelector(".iProSubmit").disabled = false;
+    if (fname.value == "" || lname.value == "" || email.value == "") {
+      alert("Fill in all the fields.");
+      console.log(fname.value, lname.value, email.value);
+    } else {
+      const value = {
+        product: product.value,
+        first_name: fname.value,
+        last_name: lname.value,
+        email: email.value,
+        // color: color.value,
+        date: new Date().toJSON(),
+      };
+      Order.toOrder(value)
+        .then(() => (document.querySelector(".iProSubmit").disabled = false))
+        .then(() => console.log(value));
     }
   }
 }
