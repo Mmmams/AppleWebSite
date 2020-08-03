@@ -651,7 +651,7 @@ a {
   width: 20vw;
   height: 10vh;
   border: none;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #e8f0fd;
   color: rgb(0, 0, 0);
   font-size: 20px;
   margin: 10px 10px 10px 10px;
@@ -727,6 +727,7 @@ a {
 .submit {
   transition: 550ms;
   font-size: 24px;
+  background-color: #d4e3fc;
 }
 .submit:hover {
   border-radius: 15px;
