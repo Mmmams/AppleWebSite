@@ -12,6 +12,8 @@ setInterval(() => {
 }, 10000);
 
 document.getElementsByTagName("body")[0].addEventListener("click", clickFun);
+let buttons = document.querySelectorAll(".macbtn");
+buttons.forEach((item) => (item.disabled = "disabled"));
 
 class Order {
   static toOrder(value) {
@@ -33,25 +35,17 @@ async function clickFun() {
   //  обработчик кнопки sing in
   if (event.target.classList.contains("header-button")) {
     if (
-      document.getElementById("NamePlaceholder").value != "" &&
+      document.getElementById("emailPlaceholder").value != "" &&
       document.getElementById("passPlaceholder").value != ""
     ) {
-      let name = document.getElementById("NamePlaceholder").value;
-      let password = document.getElementById("passPlaceholder").value;
-      let HelloField = document.querySelector(".formWrapper");
-      HelloField.innerHTML = ``;
-      HelloField.setAttribute("style", "height: 7vh;");
-      document
-        .querySelector(".header-button")
-        .setAttribute("style", "visibility:hidden");
-      document.querySelector(".accName").innerHTML = `acc: ${name}`;
-      document.querySelector(
-        ".exit"
-      ).innerHTML = `<button class='exitBtn'>Exit</button>`;
+      const email = document.getElementById("emailPlaceholder").value;
+      const password = document.getElementById("passPlaceholder").value;
+      Auth(email, password);
     } else {
-      alert("The name field or the email field are empty.");
+      alert("Empty email or password field");
     }
   }
+
   // обработчики кнопок товаров
   else if (event.target.classList.contains("commonMacbtn")) {
     document.querySelector(".commonMac").setAttribute("style", "display:none;");
@@ -104,15 +98,16 @@ async function clickFun() {
 <div class='commonMacBuyImg'></div>
   </div>`;
   } else if (event.target.classList.contains("airMacbtn")) {
-    document.querySelector(".airMac").setAttribute("style", "display:none;");
-    document.querySelector(".airMac").classList.add("toOpacity");
-    document
-      .querySelector(".airMacBuyForm")
-      .setAttribute("style", "display:flex; opacity: 30%;");
-    document
-      .querySelector(".macBuyForm")
-      .setAttribute("style", "display:none;");
-    document.querySelector(".airMacBuyForm").innerHTML = `
+    if ((checked = true)) {
+      document.querySelector(".airMac").setAttribute("style", "display:none;");
+      document.querySelector(".airMac").classList.add("toOpacity");
+      document
+        .querySelector(".airMacBuyForm")
+        .setAttribute("style", "display:flex; opacity: 30%;");
+      document
+        .querySelector(".macBuyForm")
+        .setAttribute("style", "display:none;");
+      document.querySelector(".airMacBuyForm").innerHTML = `
     <div class='buyForm'>
     <div class='airMacBuyImg'></div>
     <div class='formInputs'>
@@ -128,41 +123,47 @@ async function clickFun() {
     <input type='submit' class='buyFormInput airMacSubmit submit' value='To order'/>
     </div>
     </div>`;
-    setTimeout(() => {
-      document
-        .querySelector(".airMacBuyForm")
-        .setAttribute("style", "display:flex; opacity: 70%;");
-    }, 40);
-    setTimeout(() => {
-      document
-        .querySelector(".airMacBuyForm")
-        .setAttribute("style", "display:flex; opacity: 100%;");
-    }, 70);
-    if (document.querySelector(".commonMac").classList.contains("toOpacity")) {
-      document
-        .querySelector(".commonMac")
-        .setAttribute("style", "display:flex; opacity: 30%;");
       setTimeout(() => {
         document
-          .querySelector(".commonMac")
+          .querySelector(".airMacBuyForm")
           .setAttribute("style", "display:flex; opacity: 70%;");
       }, 40);
       setTimeout(() => {
         document
-          .querySelector(".commonMac")
+          .querySelector(".airMacBuyForm")
           .setAttribute("style", "display:flex; opacity: 100%;");
       }, 70);
+      if (
+        document.querySelector(".commonMac").classList.contains("toOpacity")
+      ) {
+        document
+          .querySelector(".commonMac")
+          .setAttribute("style", "display:flex; opacity: 30%;");
+        setTimeout(() => {
+          document
+            .querySelector(".commonMac")
+            .setAttribute("style", "display:flex; opacity: 70%;");
+        }, 40);
+        setTimeout(() => {
+          document
+            .querySelector(".commonMac")
+            .setAttribute("style", "display:flex; opacity: 100%;");
+        }, 70);
+      }
     }
+
     // обработчик кнопок айфона
   } else if (event.target.classList.contains("iseBtn")) {
-    let prom = new Promise((resolve, reject) => {
-      let selector = document.querySelector(".iseImg");
-      resolve(selector.setAttribute("style", "transform: translate(-37vw,0);"));
-      let atherSlector = document.querySelector(".iseText");
-      atherSlector.setAttribute("style", "transform: translate(37vw,0);");
-    });
-    prom.then(() => {
-      document.querySelector(".iseText").innerHTML = `
+    if ((checked = true)) {
+      let prom = new Promise((resolve, reject) => {
+        let selector = document.querySelector(".iseImg");
+        selector.setAttribute("style", "transform: translate(-37vw,0);");
+        let atherSlector = document.querySelector(".iseText");
+        atherSlector.setAttribute("style", "transform: translate(37vw,0);");
+        resolve();
+      });
+      prom.then(() => {
+        document.querySelector(".iseText").innerHTML = `
       <div class='iphoneContainer'>
       <div class='formInputs'>
       <div class="mactitle iseTitle">iPhone se</div>
@@ -173,15 +174,17 @@ async function clickFun() {
       </div>
       <img class='backimg iseBackBtn' src="./img/backimg.png"/>
       </div>`;
-    });
+      });
+    }
   } else if (event.target.classList.contains("i11Btn")) {
-    document
-      .querySelector(".i11Img")
-      .setAttribute("style", "transform: translate(37vw,0);");
-    document
-      .querySelector(".i11Text")
-      .setAttribute("style", "transform: translate(-37vw,0);");
-    document.querySelector(".i11Text").innerHTML = `
+    if ((checked = true)) {
+      document
+        .querySelector(".i11Img")
+        .setAttribute("style", "transform: translate(37vw,0);");
+      document
+        .querySelector(".i11Text")
+        .setAttribute("style", "transform: translate(-37vw,0);");
+      document.querySelector(".i11Text").innerHTML = `
     <div class='iphoneContainer'>
     <img class='backimg i11BackBtn' src="./img/backimRev.png"/>
       <div class='formInputs'>
@@ -192,14 +195,16 @@ async function clickFun() {
       <input type='submit'  class='buyFormInput i11Submit submit' value='To order'/>
       </div>
       </div>`;
+    }
   } else if (event.target.classList.contains("iProBtn")) {
-    document
-      .querySelector(".iProImg")
-      .setAttribute("style", "transform: translate(-37vw,0);");
-    document
-      .querySelector(".iProText")
-      .setAttribute("style", "transform: translate(37vw,0);");
-    document.querySelector(".iProText").innerHTML = `
+    if ((checked = true)) {
+      document
+        .querySelector(".iProImg")
+        .setAttribute("style", "transform: translate(-37vw,0);");
+      document
+        .querySelector(".iProText")
+        .setAttribute("style", "transform: translate(37vw,0);");
+      document.querySelector(".iProText").innerHTML = `
     <div class='iphoneContainer'>
       <div class='formInputs'>
       <div class="mactitle iProTitle">iPhone 11 <span class='pro'>Pro</span></div>
@@ -210,9 +215,12 @@ async function clickFun() {
       </div>
       <img class='backimg iProBackBtn' src="./img/backimg.png"/>
       </div>`;
+    }
   }
   //копка назад в поле айфонов
   else if (event.target.classList.contains("iseBackBtn")) {
+    if ((checked = true)) {
+    }
     document
       .querySelector(".iseImg")
       .setAttribute("style", "transform: translate(0,0);");
@@ -317,10 +325,10 @@ async function clickFun() {
     email = document.querySelector("#commonMacEmail");
     color = document.querySelector(".commonMacSelect");
     product = document.querySelector(".mactitle");
-    document.querySelector(".commonMacSubmit").disabled = false;
     if (fname.value == "" || lname.value == "" || email.value == "") {
       alert("Fill in all the fields.");
       console.log(fname.value, lname.value, email.value);
+      document.querySelector(".commonMacSubmit").disabled = false;
     } else {
       const value = {
         product: product.value,
@@ -343,10 +351,10 @@ async function clickFun() {
     email = document.querySelector("#airMacEmail");
     color = document.querySelector(".airMacSelect");
     product = document.querySelector(".airMacTitle");
-    document.querySelector(".airMacSubmit").disabled = false;
     if (fname.value == "" || lname.value == "" || email.value == "") {
       alert("Fill in all the fields.");
       console.log(fname.value, lname.value, email.value);
+      document.querySelector(".airMacSubmit").disabled = false;
     } else {
       const value = {
         product: product.value,
@@ -367,10 +375,10 @@ async function clickFun() {
     email = document.querySelector("#iseEmail");
     // color = document.querySelector(".iseSelect");
     product = document.querySelector(".iseTitle");
-    document.querySelector(".iseSubmit").disabled = false;
     if (fname.value == "" || lname.value == "" || email.value == "") {
       alert("Fill in all the fields.");
       console.log(fname.value, lname.value, email.value);
+      document.querySelector(".iseSubmit").disabled = false;
     } else {
       const value = {
         product: product.value,
@@ -391,10 +399,10 @@ async function clickFun() {
     email = document.querySelector("#i11Email");
     // color = document.querySelector(".i11Select");
     product = document.querySelector(".i11Title");
-    document.querySelector(".i11Submit").disabled = false;
     if (fname.value == "" || lname.value == "" || email.value == "") {
       alert("Fill in all the fields.");
       console.log(fname.value, lname.value, email.value);
+      document.querySelector(".i11Submit").disabled = false;
     } else {
       const value = {
         product: product.value,
@@ -415,10 +423,10 @@ async function clickFun() {
     email = document.querySelector("#iProEmail");
     // color = document.querySelector(".iProSelect");
     product = document.querySelector(".iProTitle");
-    document.querySelector(".iProSubmit").disabled = false;
     if (fname.value == "" || lname.value == "" || email.value == "") {
       alert("Fill in all the fields.");
       console.log(fname.value, lname.value, email.value);
+      document.querySelector(".iProSubmit").disabled = false;
     } else {
       const value = {
         product: product.value,
@@ -432,5 +440,126 @@ async function clickFun() {
         .then(() => (document.querySelector(".iProSubmit").disabled = false))
         .then(() => console.log(value));
     }
+  } else if (event.target.classList.contains("RegTitle")) {
+    RegForm();
+  } else if (event.target.classList.contains("regSubmit")) {
+    fname = document.querySelector("#fname").value;
+    lname = document.querySelector("#lname").value;
+    email = document.querySelector("#email").value;
+    password = document.querySelector("#password").value;
+
+    addUser(fname, lname, email, password);
+  }
+  function Auth(email, password) {
+    // const apiKey = "AIzaSyDPAY28WmRFXA5DibYDO1DNNE7JfFnaFSU";
+    // return fetch(
+    //   `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({ email, password, returnSecureToken: true }),
+    //     headers: { "Content-Type": "application/json" },
+    //   }
+    // ).then((response) => {
+    //   console.log(response);
+    //   return response.json();
+    // });
+    return fetch(`https://applewebsite-b8de1.firebaseio.com/users.json`).then(
+      () => {
+        console.log("1");
+        checkUserAndSingIn(email, password);
+      }
+    );
+  }
+
+  function RegForm() {
+    let form = (document.querySelector(".form").innerHTML = `
+<form class="regForm">
+<div class='regCard'>
+<input type="text" placeholder="Name" class='regInput' id='fname'>
+<input type="text" placeholder="Last name" class='regInput' id='lname'>
+  <input type="email" placeholder="email" class='regInput' id='email'>
+  <input type="password" placeholder="password" class='regInput' id='password'>
+  </div>
+  <div>
+  <input type='submit' value='Sing Up' class='regSubmit'/>
+  </div>
+</form>
+`);
+  }
+
+  function addUser(fname, lname, email, password) {
+    event.preventDefault();
+    return fetch(`https://applewebsite-b8de1.firebaseio.com/users.json`, {
+      method: "POST",
+      body: JSON.stringify({ fname, lname, email, password }),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .then(() => {
+        document.querySelector(".form").innerHTML = `       <div class="form">
+      <div class="formWrapper">
+        <input
+          class="header-input"
+          id="emailPlaceholder"
+          type="email"
+          placeholder="Email"
+        />
+        <input
+          class="header-input"
+          id="passPlaceholder"
+          type="password"
+          placeholder="Password"
+        />
+      </div>
+      <input type="submit" class="header-button" value="Sing in" />
+      <div class="RegTitle">Нету аккаунта? Создайте его.</div>
+    </div>`;
+      });
+  }
+
+  function checkUserAndSingIn(mail, pass) {
+    console.log("2");
+    fetch(`https://applewebsite-b8de1.firebaseio.com/users.json`)
+      .then((response) => {
+        console.log("3");
+        return response.json();
+      })
+      .then((response) => {
+        console.log("4");
+        const val = Object.keys(response).map((key) => ({
+          ...response[key],
+          id: key,
+        }));
+        for (let i = 0; i <= val.length; i++) {
+          console.log(val[i]);
+          if (val[i].email == mail && val[i].password == pass) {
+            console.log("all ok");
+            document.querySelector(".header-button").disabled = true;
+            document.querySelector(".formWrapper").innerHTML = ``;
+            document
+              .querySelector(".form")
+              .setAttribute("style", "visibility:hidden");
+            document.querySelector(".accName").innerHTML = `acc: ${mail}`;
+            document.querySelector(
+              ".exit"
+            ).innerHTML = `<button class='exitBtn'>Exit</button>`;
+            document.querySelectorAll(".macbtn").disabled = false;
+            let arr = document.querySelectorAll(".macbtn");
+            arr.forEach((item) => item.classList.add("activemacbtn"));
+            arr.forEach((item) => (item.disabled = false));
+            break;
+          } else if (val[i].email == mail && val[i].password !== pass) {
+            alert("wrong password");
+            document.querySelector("#passPlaceholder").value = "";
+            break;
+          }
+        }
+      });
   }
 }

@@ -1,0 +1,24 @@
+{
+  "name": "siteapple",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "firebase": "^7.18.0",
+    "firebaseui": "^4.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mmmams/AppleWebSite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mmmams/AppleWebSite/issues"
+  },
+  "homepage": "https://github.com/Mmmams/AppleWebSite#readme"
+}
